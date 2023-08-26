@@ -17,6 +17,7 @@
 					  <p class="text-red-500 text-sm mt-1">{{$message}}</p>
                     @enderror
                 </div>
+                <input type="text" name="userid" value="{{auth()->user()->id}}">
 
                 <div class="mb-6">
                     <label for="title" class="inline-block text-lg mb-2">Job Title</label>

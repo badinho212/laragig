@@ -29,8 +29,10 @@ class ListingController extends Controller
 
    //store listing data
    public function store(Request $request) {
+   
     $formFields = $request->validate([
         'title' => 'required',
+        'user_id' => auth()->user()->id(),
         'company' => ['required', Rule::unique('listings','company')],
         'location' => 'required',
         'website' => 'required',
@@ -82,6 +84,10 @@ class ListingController extends Controller
         $listing->delete();
 
         return redirect('/')->with('message', 'Listing deleted successfull');
+   }
+
+   public function manage(){
+    return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
    }
 
 
